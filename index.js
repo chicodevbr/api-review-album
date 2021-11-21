@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to Album Review API...');
 });
 
-app.use('/albums', albums);
+app.use('/api/albums', albums);
 
 const connection_string = process.env.MONGO_URI;
 
