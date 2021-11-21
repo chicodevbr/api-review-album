@@ -1,3 +1,4 @@
+const albums = require('./server/routes/albums');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -12,6 +13,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Welcome to Album Review API...');
 });
+
+app.use('/api/albums', albums);
 
 const connection_string = process.env.MONGO_URI;
 
