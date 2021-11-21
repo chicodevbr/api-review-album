@@ -69,6 +69,7 @@ router.put('/:id', async (req, res) => {
     producer: Joi.string().min(3).max(30),
     sales: Joi.number(),
     streams: Joi.number(),
+    imgUrl: Join.string(),
     imageAlbum: Joi.string(),
     date: Joi.date(),
   });
@@ -83,8 +84,17 @@ router.put('/:id', async (req, res) => {
     if (!album) return res.status(404).send('Album not found...');
     /* if(todo.uid !== req.user._id)
       return res.status(401).send('Album update failed. Not authorized...')*/
-    const { name, artist, year, label, producer, sales, streams, date } =
-      req.body;
+    const {
+      name,
+      artist,
+      year,
+      label,
+      producer,
+      sales,
+      streams,
+      date,
+      imgUrl,
+    } = req.body;
 
     const updateAlbum = await Album.findByIdAndUpdate(
       req.params.id,
@@ -96,6 +106,7 @@ router.put('/:id', async (req, res) => {
         producer,
         sales,
         streams,
+        imgUrl,
         imageAlbum: req.file.originalname,
       },
       { new: true }
