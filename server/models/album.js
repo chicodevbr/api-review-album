@@ -1,26 +1,22 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const albumSchema = new Schema({
+const albumSchema = Schema({
   name: {
     type: String,
-    minlength: 3,
     maxlength: 200,
   },
   artist: {
     type: String,
-    minlength: 3,
     maxlength: 80,
   },
   year: Number,
   label: {
     type: String,
-    minlength: 2,
     maxlength: 30,
   },
   producer: {
     type: String,
-    minlength: 2,
     maxlength: 30,
   },
   sales: Number,
@@ -41,5 +37,4 @@ const albumSchema = new Schema({
   ],
 });
 
-const Album = mongoose.model('Album', albumSchema);
-exports.Album = Album;
+module.exports = Album = mongoose.model('Album', albumSchema);
