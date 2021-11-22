@@ -27,6 +27,7 @@ router.post('/', store.single('imageAlbum'), async (req, res) => {
     producer: Joi.string().min(3).max(30),
     sales: Joi.number(),
     streams: Joi.number(),
+    imgUrl: Joi.string(),
     imageAlbum: Joi.string(),
     date: Joi.date(),
   });
@@ -35,7 +36,7 @@ router.post('/', store.single('imageAlbum'), async (req, res) => {
 
   if (error) return res.status(400).send(error.details[0].message);
 
-  const { name, artist, year, label, producer, sales, streams, date } =
+  const { name, artist, year, label, producer, sales, streams, imgUrl, date } =
     req.body;
 
   let album = new Album({
@@ -46,6 +47,7 @@ router.post('/', store.single('imageAlbum'), async (req, res) => {
     producer,
     sales,
     streams,
+    imgUrl,
     imageAlbum: req.file.originalname,
     date,
   });
