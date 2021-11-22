@@ -20,10 +20,7 @@ const albumRouter = require('./server/routes/albums');
 app.use('/', indexRouter);
 app.use('/albums', albumRouter);
 
-const connection_string =
-  process.env.MONGO_URI ||
-  'mongodb+srv://admin:admin123@reviewapp.wqdu1.mongodb.net/ReviewApp?retryWrites=true&w=majority';
-
+const connection_string = process.env.MONGO_URI;
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
