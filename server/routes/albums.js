@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 // post
 router.post('/', store.single('imageAlbum'), async (req, res) => {
   const schema = Joi.object({
-    name: Joi.string().min(2).max(200).required(),
+    name: Joi.string().min(2).max(200),
     artist: Joi.string().min(2).max(80),
     year: Joi.number(),
     label: Joi.string().min(2).max(30),
