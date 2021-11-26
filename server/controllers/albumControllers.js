@@ -41,6 +41,7 @@ exports.update = async (req, res) => {
     const album = {};
     album.name = req.body.name;
     album.artist = req.body.artist;
+    album.description = req.body.description;
     album.year = req.body.year;
     album.label = req.body.label;
     album.producer = req.body.producer;

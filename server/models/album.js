@@ -10,6 +10,10 @@ const albumSchema = Schema({
     type: String,
     maxlength: 80,
   },
+  description: {
+    type: String,
+    maxlength: 1200,
+  },
   year: Number,
   label: {
     type: String,

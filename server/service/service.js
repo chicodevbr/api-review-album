@@ -16,9 +16,10 @@ module.exports = class AlbumsService {
       const newAlbum = {
         name: data.name,
         artist: data.artist,
+        description: data.description,
         year: data.year,
         label: data.label,
-        producer: data.label,
+        producer: data.producer,
         sales: data.sales,
         streams: data.streams,
         imgUrl: data.imgUrl,
