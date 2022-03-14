@@ -10,6 +10,11 @@ const albumSchema = Schema({
     type: String,
     maxlength: 80,
   },
+  artistId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Artist',
+    required: true,
+  },
   description: {
     type: String,
     maxlength: 1200,
