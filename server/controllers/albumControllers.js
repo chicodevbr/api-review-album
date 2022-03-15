@@ -1,4 +1,4 @@
-const AlbumsService = require('../service/service');
+const AlbumsService = require('../service/album');
 
 exports.get = async (req, res) => {
   let id = req.params.id;

@@ -1,4 +1,5 @@
 const Album = require('../models/album');
+
 const Joi = require('joi');
 
 module.exports = class AlbumsService {
