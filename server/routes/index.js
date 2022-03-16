@@ -1,10 +1,8 @@
 const express = require('express');
+const routes = express.Router();
+const indexRoute = require('./v1/index');
+const albumRoutes = require('./v1/albums');
 
-const router = express.Router();
+routes.use('/api/v1', [indexRoute, albumRoutes]);
 
-router.get('/', (req, res) => {
-  console.log('API Album Review version 1.0.3');
-  res.send('Hello API ALBUM REVIEW version 1.0.3');
-});
-
-module.exports = router;
+module.exports = routes;
