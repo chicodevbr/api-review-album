@@ -16,9 +16,10 @@ module.exports = class ArtistService {
         name: data.name,
         description: data.description,
         country: data.country,
+        discography: { album: [] },
       };
 
-      const response = await new Album(newAlbum).save();
+      const response = await new Artist(newArtist).save();
       return response;
     } catch (error) {
       console.log(error);

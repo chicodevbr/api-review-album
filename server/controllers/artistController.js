@@ -2,7 +2,7 @@ const ArtistService = require('../service/artist');
 
 exports.getAll = async (req, res) => {
   try {
-    const artists = await ArtistService.getAllAlbums();
+    const artists = await ArtistService.getAllArtists();
 
     if (!artists) {
       return res.status(404).json('There are no artists published yet');
@@ -14,10 +14,10 @@ exports.getAll = async (req, res) => {
   }
 };
 
-exports.post = async (req, res) => {
+exports.add = async (req, res) => {
   try {
-    const createAlbum = await AlbumsService.addAlbum(req.body);
-    res.status(201).json(createAlbum);
+    const createArtist = await ArtistService.addArtist(req.body);
+    res.status(201).json(createArtist);
   } catch (error) {
     res.status(500).json({ error: error });
   }
