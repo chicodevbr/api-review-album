@@ -42,7 +42,7 @@ const albumSchema = Schema({
     review: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'review',
+        ref: 'Review',
       },
     ],
   },
