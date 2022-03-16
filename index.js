@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const routes = require('./server/routes');
 
 dotenv.config();
 
@@ -15,11 +16,7 @@ app.use(
   })
 );
 
-const indexRouter = require('./server/routes/index');
-const albumRouter = require('./server/routes/albums');
-
-app.use('/', indexRouter);
-app.use('/albums', albumRouter);
+app.use(routes);
 
 const connection_string = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3333;
