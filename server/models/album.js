@@ -38,12 +38,14 @@ const albumSchema = Schema({
     type: Date,
     default: new Date(),
   },
-  review: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'review',
-    },
-  ],
+  reviews: {
+    review: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'review',
+      },
+    ],
+  },
 });
 
 module.exports = Album = mongoose.model('Album', albumSchema);
