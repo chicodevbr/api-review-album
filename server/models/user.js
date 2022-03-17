@@ -14,6 +14,17 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  reviews: {
+    posts: [
+      {
+        reviewId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Review',
+          required: false,
+        },
+      },
+    ],
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);
