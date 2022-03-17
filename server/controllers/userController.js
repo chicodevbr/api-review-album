@@ -17,7 +17,10 @@ exports.signup = async (req, res) => {
       password: hashedPassword,
       reviews: { posts: [] },
     });
+
+    await user.save();
   } catch (error) {
+    res.status(500).send(error.message);
     console.log(error);
   }
 };
