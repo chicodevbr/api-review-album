@@ -1,4 +1,5 @@
 const ArtistService = require('../service/artist');
+const Artist = require('../models/artist');
 
 exports.getAll = async (req, res) => {
   try {
@@ -16,7 +17,11 @@ exports.getAll = async (req, res) => {
 
 exports.add = async (req, res) => {
   try {
+    let artist = await Artist.findOne({ name: req.body.name });
+    if (artist) return res.status(400).send('Artist already exist');
+
     const createArtist = await ArtistService.addArtist(req.body);
+
     res.status(201).json(createArtist);
   } catch (error) {
     res.status(500).json({ error: error });
