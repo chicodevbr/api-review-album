@@ -13,6 +13,11 @@ const artistSchema = new Schema({
   country: {
     type: String,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
+  },
   discography: {
     album: [
       {

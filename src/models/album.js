@@ -13,7 +13,7 @@ const albumSchema = Schema({
   artistId: {
     type: Schema.Types.ObjectId,
     ref: 'Artist',
-    required: true,
+    required: false,
   },
   description: {
     type: String,
@@ -33,6 +33,11 @@ const albumSchema = Schema({
   imgUrl: String,
   imageAlbum: {
     type: String,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
   date: {
     type: Date,

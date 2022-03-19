@@ -10,13 +10,14 @@ module.exports = class ArtistService {
     }
   }
 
-  static async addArtist(data) {
+  static async addArtist(data, userId) {
     try {
       const newArtist = {
         name: data.name,
         description: data.description,
         country: data.country,
         discography: { album: [] },
+        userId: userId,
       };
 
       const response = await new Artist(newArtist).save();
