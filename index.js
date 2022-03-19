@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const routes = require('./server/routes');
+const routes = require('./src/routes');
+const environment = require('./src/config/environment');
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use(
 app.use(routes);
 
 const connection_string = process.env.MONGO_URI;
-const PORT = process.env.PORT || 3333;
+const PORT = environment.port;
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
