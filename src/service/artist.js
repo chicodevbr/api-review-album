@@ -3,7 +3,7 @@ const Artist = require('../models/artist');
 module.exports = class ArtistService {
   static async getAllArtists() {
     try {
-      const allArtist = await Artist.find();
+      const allArtist = await Artist.find().populate('albums');
       return allArtist;
     } catch (error) {
       console.log(`Could not fetch artists ${error}`);
