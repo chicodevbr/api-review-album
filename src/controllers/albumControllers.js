@@ -1,5 +1,7 @@
 const AlbumsService = require('../service/album');
 const Artist = require('../models/artist');
+const Album = require('../models/album');
+const mongoose = require('mongoose');
 
 exports.getById = async (req, res) => {
   const albumId = req.params.albumId;
@@ -30,7 +32,6 @@ exports.add = async (req, res) => {
   try {
     const {
       name,
-      artist,
       description,
       year,
       label,
@@ -41,11 +42,10 @@ exports.add = async (req, res) => {
       date,
     } = req.body;
 
-    const newAlbum = {
+    const newAlbum = new Album({
       name: name,
-      artist: artist,
+      artist: req.params.artistId,
       description: description,
-      artist: [req.params.artistId],
       year: year,
       label: label,
       producer: producer,
@@ -54,11 +54,18 @@ exports.add = async (req, res) => {
       imgUrl: imgUrl,
       date: date,
       //userId: req.user._id,
-    };
+    });
 
-    const response = await new Album(newAlbum).save();
+    const artist = await Artist.findById(req.params.artistId);
 
-    res.status(201).json(response);
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await newAlbum.save({ session: session });
+    artist.albums.push(newAlbum);
+    await artist.save({ session: session });
+    await session.commitTransaction();
+
+    res.status(201).json({ album: newAlbum });
   } catch (error) {
     res.status(500).json({ error: error });
   }

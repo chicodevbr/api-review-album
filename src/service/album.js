@@ -50,7 +50,7 @@ module.exports = class AlbumsService {
 
   static async getAlbumById(albumId) {
     try {
-      const album = await Album.findById(albumId).populate('Artist');
+      const album = await Album.findById(albumId).populate('artist');
       return album;
     } catch (error) {
       console.log(error);
