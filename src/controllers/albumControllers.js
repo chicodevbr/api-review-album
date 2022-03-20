@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 exports.getById = async (req, res) => {
   /*
   #swagger.tags = ['Albums']
-  #swagger.description = 'Endpoint que retorna lista de albums cadastrados"
+  #swagger.description = 'Endpoint que retorna album por Id."
   */
   const albumId = req.params.albumId;
 
@@ -19,6 +19,10 @@ exports.getById = async (req, res) => {
 };
 
 exports.getAll = async (req, res) => {
+  /*
+  #swagger.tags = ['Albums']
+  #swagger.description = 'Endpoint que retorna lista de albums cadastrados"
+  */
   try {
     const albums = await AlbumsService.getAllAlbums();
 
@@ -33,6 +37,10 @@ exports.getAll = async (req, res) => {
 };
 
 exports.add = async (req, res) => {
+  /*
+  #swagger.tags = ['Albums']
+  #swagger.description = 'Endpoint para cadastrar novos albums."
+  */
   try {
     const {
       album,
@@ -78,6 +86,10 @@ exports.add = async (req, res) => {
 };
 
 exports.update = async (req, res) => {
+  /*
+  #swagger.tags = ['Albums']
+  #swagger.description = 'Endpoint que atualiza infos de determinado album."
+  */
   let id = req.params.id;
 
   try {
@@ -106,6 +118,10 @@ exports.update = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
+  /*
+  #swagger.tags = ['Albums']
+  #swagger.description = 'Endpoint para deletar um album."
+  */
   let id = req.params.id;
 
   try {
