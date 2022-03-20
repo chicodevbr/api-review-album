@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const albumSchema = Schema({
+  album: { type: String, maxlength: 200 },
   name: {
     type: String,
     maxlength: 200,
