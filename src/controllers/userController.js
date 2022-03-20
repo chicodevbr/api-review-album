@@ -4,6 +4,10 @@ const bcrypt = require('bcryptjs');
 const environment = require('../config/environment');
 
 exports.signup = async (req, res) => {
+  /*
+  #swagger.tags = ['Users']
+  #swagger.description = 'Endpoint que cadastra um novo usuário."
+  */
   const { name, email, password } = req.body;
 
   try {
@@ -43,6 +47,10 @@ exports.signup = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
+  /*
+  #swagger.tags = ['Users']
+  #swagger.description = 'Endpoint de login na base de dados."
+  */
   const { email, password } = req.body;
 
   try {

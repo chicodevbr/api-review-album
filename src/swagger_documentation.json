@@ -5,12 +5,24 @@
     "title": "Album Review API",
     "description": "Welcome to Album Review API"
   },
-  "host": "localhost:5000",
+  "host": "https://api-album-review.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
       "name": "Albums",
       "description": "Endpoints com infos sobre os albums da nossa base de dados."
+    },
+    {
+      "name": "Artists",
+      "description": "Endpoints que retornam infos de artistas cadastrados na base de dados."
+    },
+    {
+      "name": "Users",
+      "description": "Endpoints para cadastro e login de usuários."
+    },
+    {
+      "name": "Reviews",
+      "description": "Endpoints para postagem de reviews."
     }
   ],
   "schemes": [
@@ -45,7 +57,10 @@
     },
     "/api/v1/album": {
       "get": {
-        "description": "",
+        "tags": [
+          "Albums"
+        ],
+        "description": "Endpoint que retorna lista de albums cadastrados\"   \n   try {   const albums = await AlbumsService. ();     if (!albums) {   return res.status(404).json(",
         "parameters": [],
         "responses": {
           "200": {
@@ -65,7 +80,7 @@
         "tags": [
           "Albums"
         ],
-        "description": "Endpoint que retorna lista de albums cadastrados\"   \n   const albumId = req.params.albumId;     try {   const album = await AlbumsService.getAlbumById(albumId);   res.json(album);   } catch (error) {   res.status(500).json(error.message);   }  };    exports.getAll = (req, res) => {   try {   const albums = await AlbumsService.getAllAlbums();     if (!albums) {   return res.status(404).json(",
+        "description": "Endpoint que retorna album por Id.\"   \n   const albumId = req.params.albumId;     try {   const album = await AlbumsService.getAlbumById(albumId);   res.json(album);   } catch (error) {   res.status(500).json(error.message);   }  };    exports.getAll = (req, res) => {   \n   \n#swagger.tags = [",
         "parameters": [
           {
             "name": "albumId",
@@ -74,12 +89,22 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/api/v1/album/{artistId}": {
       "post": {
-        "description": "",
+        "tags": [
+          "Albums"
+        ],
+        "description": "Endpoint para cadastrar novos albums.\"   \n   try {   const {   album,   name,   description,   year,   label,   producer,   sales,   streams,   imgUrl,   date,   } = req.body;     const newAlbum = new Album({   album: album,   name: name,   artist: req.params.artistId,   description: description,   year: year,   label: label,   producer: producer,   sales: sales,   streams: streams,   imgUrl: imgUrl,   date: date,   });     const artist = await Artist.findById(req.params.artistId);     const session = await mongoose.startSession();   session.startTransaction();   await newAlbum.save({ session: session });   artist.albums.push(newAlbum);   await artist.save({ session: session });   await session.commitTransaction();     res.status(201).json({ album: newAlbum });   } catch (error) {   res.status(500).json({ error: error });   }  };    exports.update = (req, res) => {   \n   \n#swagger.tags = [",
         "parameters": [
           {
             "name": "artistId",
@@ -91,50 +116,11 @@
             "name": "x-auth-token",
             "in": "header",
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "album": {
-                  "example": "any"
-                },
-                "name": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "year": {
-                  "example": "any"
-                },
-                "label": {
-                  "example": "any"
-                },
-                "producer": {
-                  "example": "any"
-                },
-                "sales": {
-                  "example": "any"
-                },
-                "streams": {
-                  "example": "any"
-                },
-                "imgUrl": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -150,67 +136,24 @@
     },
     "/api/v1/album/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Albums"
+        ],
+        "description": "Endpoint que atualiza infos de determinado album.\"   \n   let id = req.params.id;     try {   const album = {};   album.name = req.body.name;   album.artist = req.body.artist;   album.description = req.body.description;   album.year = req.body.year;   album.label = req.body.label;   album.producer = req.body.producer;   album.sales = req.body.sales;   album.streams = req.body.streams;   album.imgUrl = req.body.imgUrl;   album.date = req.body.date;     const   = await AlbumsService. (id, album);     if ( .nModified === 0) {   return res.status(404).json({});   }     res.json( );   } catch (error) {   res.status(500).json({ error: error });   }  };    exports.delete = (req, res) => {    \n   \n#swagger.tags = [",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "artist": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "year": {
-                  "example": "any"
-                },
-                "label": {
-                  "example": "any"
-                },
-                "producer": {
-                  "example": "any"
-                },
-                "sales": {
-                  "example": "any"
-                },
-                "streams": {
-                  "example": "any"
-                },
-                "imgUrl": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       },
       "delete": {
+        "tags": [
+          "Albums"
+        ],
         "description": "",
         "parameters": [
           {
@@ -220,53 +163,16 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/api/v1/artist": {
       "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "x-auth-token",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Artists"
         ],
+        "description": "Endpoint que retorna lista de artistas cadastrados\"   \n   try {   const artists = await ArtistService. ();     if (!artists) {   return res.status(404).json(",
+        "parameters": [],
         "responses": {
           "201": {
             "description": "Created"
@@ -274,18 +180,39 @@
           "400": {
             "description": "Bad Request"
           },
-          "401": {
-            "description": "Unauthorized"
-          },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Artists"
+        ],
+        "description": "Endpoint para cadastrar novos artistas.\"   \n   try {   let artist = await Artist.findOne({ name: req.body.name });   if (artist) return res.status(400).send(",
+        "parameters": [
+          {
+            "name": "x-auth-token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
     "/api/v1/artist/{artistId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Artists"
+        ],
+        "description": "Endpoint que retorna artista por Id.\"   \n   try {   const { artistId } = req.params;     const artist = await Artist.findById(artistId).populate(",
         "parameters": [
           {
             "name": "artistId",
@@ -294,83 +221,27 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "responses": {}
       }
     },
     "/api/v1/signup": {
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Users"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "description": "Endpoint que cadastra um novo usuário.\"   \n   const { name, email, password } = req.body;     try {   let user = await User.findOne({ email: email });     if (user) {   return res.status(400).send(",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/api/v1/login": {
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Users"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
+        "description": "Endpoint de login na base de dados.\"   \n   const { email, password } = req.body;     try {   let user = await User.findOne({ email: email });   if (!user) return res.status(400).send(",
+        "parameters": [],
+        "responses": {}
       }
     }
   }
