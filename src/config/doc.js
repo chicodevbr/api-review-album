@@ -36,6 +36,10 @@ const doc = {
       name: 'Reviews',
       description: 'Endpoints para postagem de reviews.',
     },
+    {
+      name: 'Index',
+      description: 'Endpoint de boas-vindas.',
+    },
   ],
 };
 module.exports = doc;
