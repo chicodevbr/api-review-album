@@ -16,7 +16,6 @@ module.exports = class ArtistService {
         name: data.name,
         description: data.description,
         country: data.country,
-        discography: { album: [] },
         userId: userId,
       };
 

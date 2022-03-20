@@ -1,10 +1,11 @@
 const AlbumsService = require('../service/album');
+const Artist = require('../models/artist');
 
-exports.get = async (req, res) => {
-  let id = req.params.id;
+exports.getById = async (req, res) => {
+  const albumId = req.params.albumId;
 
   try {
-    const album = await AlbumsService.getAlbumById(id);
+    const album = await AlbumsService.getAlbumById(albumId);
     res.json(album);
   } catch (error) {
     res.status(500).json({ error: error });
@@ -27,8 +28,37 @@ exports.getAll = async (req, res) => {
 
 exports.add = async (req, res) => {
   try {
-    const createAlbum = await AlbumsService.addAlbum(req.body);
-    res.status(201).json(createAlbum);
+    const {
+      name,
+      artist,
+      description,
+      year,
+      label,
+      producer,
+      sales,
+      streams,
+      imgUrl,
+      date,
+    } = req.body;
+
+    const newAlbum = {
+      name: name,
+      artist: artist,
+      description: description,
+      artist: [req.params.artistId],
+      year: year,
+      label: label,
+      producer: producer,
+      sales: sales,
+      streams: streams,
+      imgUrl: imgUrl,
+      date: date,
+      //userId: req.user._id,
+    };
+
+    const response = await new Album(newAlbum).save();
+
+    res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ error: error });
   }
