@@ -15,6 +15,18 @@ exports.getAll = async (req, res) => {
   }
 };
 
+exports.getArtistById = async (req, res) => {
+  try {
+    const { artistId } = req.params;
+
+    const artist = await Artist.findById(artistId).populate('albums');
+
+    res.json(artist);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 exports.add = async (req, res) => {
   try {
     let artist = await Artist.findOne({ name: req.body.name });
