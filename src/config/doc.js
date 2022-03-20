@@ -4,7 +4,7 @@ const doc = {
     title: 'Album Review API',
     description: 'Welcome to Album Review API',
   },
-  host: 'localhost:5000',
+  host: 'https://api-album-review.herokuapp.com',
   basePath: '/',
   schemes: ['http', 'https'],
   consumes: ['application/json'],
@@ -22,6 +22,19 @@ const doc = {
       name: 'Albums',
       description:
         'Endpoints com infos sobre os albums da nossa base de dados.',
+    },
+    {
+      name: 'Artists',
+      description:
+        'Endpoints que retornam infos de artistas cadastrados na base de dados.',
+    },
+    {
+      name: 'Users',
+      description: 'Endpoints para cadastro e login de usuários.',
+    },
+    {
+      name: 'Reviews',
+      description: 'Endpoints para postagem de reviews.',
     },
   ],
 };
