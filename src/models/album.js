@@ -2,13 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const albumSchema = Schema({
+  album: { type: String, maxlength: 200 },
   name: {
     type: String,
     maxlength: 200,
   },
   artist: {
-    type: String,
-    maxlength: 80,
+    type: Schema.Types.ObjectId,
+    ref: 'Artist',
+    required: false,
   },
   description: {
     type: String,
@@ -29,14 +31,19 @@ const albumSchema = Schema({
   imageAlbum: {
     type: String,
   },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: false,
+  },
   date: {
     type: Date,
     default: new Date(),
   },
-  review: [
+  reviews: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'review',
+      ref: 'Review',
     },
   ],
 });

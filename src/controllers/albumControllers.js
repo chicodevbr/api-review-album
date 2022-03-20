@@ -1,13 +1,16 @@
-const AlbumsService = require('../service/service');
+const AlbumsService = require('../service/album');
+const Artist = require('../models/artist');
+const Album = require('../models/album');
+const mongoose = require('mongoose');
 
-exports.get = async (req, res) => {
-  let id = req.params.id;
+exports.getById = async (req, res) => {
+  const albumId = req.params.albumId;
 
   try {
-    const album = await AlbumsService.getAlbumById(id);
+    const album = await AlbumsService.getAlbumById(albumId);
     res.json(album);
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json(error.message);
   }
 };
 
@@ -27,8 +30,44 @@ exports.getAll = async (req, res) => {
 
 exports.add = async (req, res) => {
   try {
-    const createAlbum = await AlbumsService.addAlbum(req.body);
-    res.status(201).json(createAlbum);
+    const {
+      album,
+      name,
+      description,
+      year,
+      label,
+      producer,
+      sales,
+      streams,
+      imgUrl,
+      date,
+    } = req.body;
+
+    const newAlbum = new Album({
+      album: album,
+      name: name,
+      artist: req.params.artistId,
+      description: description,
+      year: year,
+      label: label,
+      producer: producer,
+      sales: sales,
+      streams: streams,
+      imgUrl: imgUrl,
+      date: date,
+      //userId: req.user._id,
+    });
+
+    const artist = await Artist.findById(req.params.artistId);
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    await newAlbum.save({ session: session });
+    artist.albums.push(newAlbum);
+    await artist.save({ session: session });
+    await session.commitTransaction();
+
+    res.status(201).json({ album: newAlbum });
   } catch (error) {
     res.status(500).json({ error: error });
   }

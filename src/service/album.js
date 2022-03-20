@@ -1,5 +1,7 @@
 const Album = require('../models/album');
-const Joi = require('joi');
+const Artist = require('../models/artist');
+
+//const Joi = require('joi');
 
 module.exports = class AlbumsService {
   static async getAllAlbums() {
@@ -11,31 +13,9 @@ module.exports = class AlbumsService {
     }
   }
 
-  static async addAlbum(data) {
-    try {
-      const newAlbum = {
-        name: data.name,
-        artist: data.artist,
-        description: data.description,
-        year: data.year,
-        label: data.label,
-        producer: data.producer,
-        sales: data.sales,
-        streams: data.streams,
-        imgUrl: data.imgUrl,
-        date: data.date,
-      };
-
-      const response = await new Album(newAlbum).save();
-      return response;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   static async getAlbumById(albumId) {
     try {
-      const album = await Album.findById({ _id: albumId });
+      const album = await Album.findById(albumId);
       return album;
     } catch (error) {
       console.log(error);

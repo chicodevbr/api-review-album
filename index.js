@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dotenv = require('dotenv');
+const routes = require('./src/routes');
+const environment = require('./src/config/environment');
 
-require('dotenv').config;
+dotenv.config();
 
 const app = express();
 
@@ -14,14 +17,10 @@ app.use(
   })
 );
 
-const indexRouter = require('./server/routes/index');
-const albumRouter = require('./server/routes/albums');
-
-app.use('/', indexRouter);
-app.use('/albums', albumRouter);
+app.use(routes);
 
 const connection_string = process.env.MONGO_URI;
-const PORT = process.env.PORT || 5000;
+const PORT = environment.port;
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
