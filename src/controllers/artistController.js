@@ -2,6 +2,10 @@ const ArtistService = require('../service/artist');
 const Artist = require('../models/artist');
 
 exports.getAll = async (req, res) => {
+  /*
+  #swagger.tags = ['Artists']
+  #swagger.description = 'Endpoint que retorna lista de artistas cadastrados"
+  */
   try {
     const artists = await ArtistService.getAllArtists();
 
@@ -16,6 +20,10 @@ exports.getAll = async (req, res) => {
 };
 
 exports.getArtistById = async (req, res) => {
+  /*
+  #swagger.tags = ['Artists']
+  #swagger.description = 'Endpoint que retorna artista por Id."
+  */
   try {
     const { artistId } = req.params;
 
@@ -28,6 +36,10 @@ exports.getArtistById = async (req, res) => {
 };
 
 exports.add = async (req, res) => {
+  /*
+  #swagger.tags = ['Artists']
+  #swagger.description = 'Endpoint para cadastrar novos artistas."
+  */
   try {
     let artist = await Artist.findOne({ name: req.body.name });
     if (artist) return res.status(400).send('Artist already exist');
