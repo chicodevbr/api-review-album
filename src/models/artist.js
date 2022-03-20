@@ -13,22 +13,17 @@ const artistSchema = new Schema({
   country: {
     type: String,
   },
-  userId: {
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: false,
   },
-  discography: {
-    album: [
-      {
-        albumId: {
-          type: Schema.Types.ObjectId,
-          ref: 'Album',
-          required: true,
-        },
-      },
-    ],
-  },
+  albums: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Album',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Artist', artistSchema);

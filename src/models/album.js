@@ -7,10 +7,6 @@ const albumSchema = Schema({
     maxlength: 200,
   },
   artist: {
-    type: String,
-    maxlength: 80,
-  },
-  artistId: {
     type: Schema.Types.ObjectId,
     ref: 'Artist',
     required: false,
@@ -37,20 +33,18 @@ const albumSchema = Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true,
+    required: false,
   },
   date: {
     type: Date,
     default: new Date(),
   },
-  reviews: {
-    review: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Review',
-      },
-    ],
-  },
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Review',
+    },
+  ],
 });
 
 module.exports = Album = mongoose.model('Album', albumSchema);
