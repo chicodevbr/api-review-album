@@ -10,7 +10,7 @@ exports.getById = async (req, res) => {
     const album = await AlbumsService.getAlbumById(albumId);
     res.json(album);
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json(error.message);
   }
 };
 
@@ -31,6 +31,7 @@ exports.getAll = async (req, res) => {
 exports.add = async (req, res) => {
   try {
     const {
+      album,
       name,
       description,
       year,
@@ -43,6 +44,7 @@ exports.add = async (req, res) => {
     } = req.body;
 
     const newAlbum = new Album({
+      album: album,
       name: name,
       artist: req.params.artistId,
       description: description,
