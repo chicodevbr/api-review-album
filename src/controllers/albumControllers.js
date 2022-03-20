@@ -4,6 +4,10 @@ const Album = require('../models/album');
 const mongoose = require('mongoose');
 
 exports.getById = async (req, res) => {
+  /*
+  #swagger.tags = ['Albums']
+  #swagger.description = 'Endpoint que retorna lista de albums cadastrados"
+  */
   const albumId = req.params.albumId;
 
   try {
