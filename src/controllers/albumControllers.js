@@ -57,7 +57,6 @@ exports.add = async (req, res) => {
       streams: streams,
       imgUrl: imgUrl,
       date: date,
-      //userId: req.user._id,
     });
 
     const artist = await Artist.findById(req.params.artistId);
