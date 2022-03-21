@@ -6,7 +6,7 @@ const doc = {
   },
   host: 'api-album-review.herokuapp.com',
   basePath: '/',
-  schemes: ['http', 'https'],
+  schemes: ['https'],
   consumes: ['application/json'],
   produces: ['application/json'],
   securityDefinitions: {

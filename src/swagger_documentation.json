@@ -30,7 +30,6 @@
     }
   ],
   "schemes": [
-    "http",
     "https"
   ],
   "securityDefinitions": {
@@ -67,7 +66,7 @@
         "tags": [
           "Albums"
         ],
-        "description": "Endpoint que retorna lista de albums cadastrados\" \n      try {   const albums = await AlbumsService. ();     if (!albums) {   return res.status(404).json(",
+        "description": "Endpoint que retorna lista de albums cadastrados\" \n    try {   const albums = await AlbumsService. ();     if (!albums) {   return res.status(404).json(",
         "parameters": [],
         "responses": {
           "201": {
@@ -84,10 +83,7 @@
     },
     "/api/v1/album/{albumId}": {
       "get": {
-        "tags": [
-          "Albums"
-        ],
-        "description": "Endpoint que retorna album por Id.\" \n      const albumId = req.params.albumId;     try {   const album = await AlbumsService.getAlbumById(albumId);   res.json(album);   } catch (error) {   res.status(500).json(error.message);   }  };    exports.getAll = (req, res) => {   \n \n#swagger.tags = [",
+        "description": "",
         "parameters": [
           {
             "name": "albumId",
@@ -97,8 +93,8 @@
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
+          "200": {
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"

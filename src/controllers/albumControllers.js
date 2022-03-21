@@ -4,11 +4,7 @@ const Album = require('../models/album');
 const mongoose = require('mongoose');
 
 exports.getById = async (req, res) => {
-  // #swagger.tags = ['Albums']
-  // #swagger.description = 'Endpoint que retorna album por Id."
-
   const albumId = req.params.albumId;
-
   try {
     const album = await AlbumsService.getAlbumById(albumId);
     res.json(album);
@@ -20,7 +16,6 @@ exports.getById = async (req, res) => {
 exports.getAll = async (req, res) => {
   // #swagger.tags = ['Albums']
   // #swagger.description = 'Endpoint que retorna lista de albums cadastrados"
-
   try {
     const albums = await AlbumsService.getAllAlbums();
 
