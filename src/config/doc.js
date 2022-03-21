@@ -41,5 +41,12 @@ const doc = {
       description: 'Endpoint de boas-vindas.',
     },
   ],
+  definitions: {
+    User: {
+      id: 1,
+      name: 'John Doe',
+      email: 'email@email.com',
+    },
+  },
 };
 module.exports = doc;
