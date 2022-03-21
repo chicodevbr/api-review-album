@@ -4,6 +4,7 @@ const controller = require('../../controllers/albumControllers');
 const auth = require('../../middleware/auth');
 
 router.get('/album', controller.getAll);
+
 router.get('/album/:albumId', controller.getById);
 
 router.post('/album/:artistId', auth, controller.add);
