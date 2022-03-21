@@ -13,7 +13,7 @@ exports.getAll = async (req, res) => {
       return res.status(404).json('There are no artists published yet');
     }
 
-    res.json(artists);
+    res.status(200).json(artists);
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -29,7 +29,7 @@ exports.getArtistById = async (req, res) => {
 
     const artist = await Artist.findById(artistId).populate('albums');
 
-    res.json(artist);
+    res.status(200).json(artist);
   } catch (error) {
     res.status(500).json({ error: error });
   }

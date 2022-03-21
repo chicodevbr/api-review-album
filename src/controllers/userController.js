@@ -39,7 +39,7 @@ exports.signup = async (req, res) => {
       secretKey
     );
 
-    res.send(token);
+    res.status(200).send({ message: 'User created', token: token });
   } catch (error) {
     res.status(500).send(error.message);
     console.log(error);
@@ -68,7 +68,7 @@ exports.login = async (req, res) => {
       secretKey
     );
 
-    res.send(token);
+    res.status(200).send({ token: token });
   } catch (error) {
     res.status(500).send(error.message);
   }

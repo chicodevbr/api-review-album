@@ -111,7 +111,7 @@ exports.update = async (req, res) => {
       return res.status(404).json({});
     }
 
-    res.json(updateAlbum);
+    res.status(201).json({ update: updateAlbum });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -126,7 +126,7 @@ exports.delete = async (req, res) => {
 
   try {
     const deleteResponse = await AlbumsService.deleteAlbum(id);
-    res.json(deleteResponse);
+    res.status(204).json();
   } catch (error) {
     res.status(500).json({ error: error });
   }
