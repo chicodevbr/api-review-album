@@ -38,8 +38,7 @@ exports.signup = async (req, res) => {
 
     res.status(200).send({ message: 'User created', token: token });
   } catch (error) {
-    res.status(500).send(error.message);
-    console.log(error);
+    res.status(500).json({ error: error });
   }
 };
 
@@ -64,7 +63,20 @@ exports.login = async (req, res) => {
 
     res.status(200).send({ token: token });
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json({ error: error });
+  }
+};
+
+exports.getAll = async (req, res) => {
+  // #swagger.tags = ['Users']
+
+  try {
+    const users = await User.find();
+    if (!users) return res.status(404).send('There are no users created yet');
+
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ error: error });
   }
 };
 
@@ -74,6 +86,7 @@ exports.update = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user) return res.status(404).sendo('User not found.');
+
     const { name, email } = req.body;
 
     const updateUser = await User.findByIdAndUpdate(req.params.userId, {
@@ -81,9 +94,9 @@ exports.update = async (req, res) => {
       email: email,
     });
 
-    res.status(201).send(updateUser);
+    res.status(201).json(updateUser);
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json({ error: error });
   }
 };
 
@@ -92,12 +105,12 @@ exports.delete = async (req, res) => {
 
   try {
     const user = await User.findById(req.params.userId);
-    if (!user) return res.status(404).sendo('User not found.');
+    if (!user) return res.status(404).send('User not found.');
 
-    const deleteUser = await User.findByIdAndDelete(req.params.userId);
+    await User.findByIdAndDelete(req.params.userId);
 
-    res.status(201).send(deleteUser);
+    res.status(204).send();
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json({ error: error });
   }
 };
