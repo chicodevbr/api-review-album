@@ -60,3 +60,18 @@ exports.update = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.delete = async (req, res) => {
+  // #swagger.tags = ['Artists']
+  try {
+    const artist = await Artist.findById(req.params.artistId);
+
+    if (!artist) return res.status(404).send('Artist not found...');
+
+    const deleteArtist = await Artist.findByIdAndDelete(req.params.artistId);
+
+    res.status(201).send(deleteArtist);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
