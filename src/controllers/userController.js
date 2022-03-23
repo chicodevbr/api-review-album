@@ -67,3 +67,37 @@ exports.login = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.update = async (req, res) => {
+  // #swagger.tags = ['Users']
+
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) return res.status(404).sendo('User not found.');
+    const { name, email } = req.body;
+
+    const updateUser = await User.findByIdAndUpdate(req.params.userId, {
+      name: name,
+      email: email,
+    });
+
+    res.status(201).send(updateUser);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+exports.delete = async (req, res) => {
+  // #swagger.tags = ['Users']
+
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) return res.status(404).sendo('User not found.');
+
+    const deleteUser = await User.findByIdAndDelete(req.params.userId);
+
+    res.status(201).send(deleteUser);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
