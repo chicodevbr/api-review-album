@@ -4,9 +4,9 @@ const doc = {
     title: 'Album Review API',
     description: 'Welcome to Album Review API',
   },
-  host: 'api-album-review.herokuapp.com',
+  host: 'localhost:5000',
   basePath: '/',
-  schemes: ['https'],
+  schemes: ['http'],
   consumes: ['application/json'],
   produces: ['application/json'],
   securityDefinitions: {

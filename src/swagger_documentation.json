@@ -5,7 +5,7 @@
     "title": "Album Review API",
     "description": "Welcome to Album Review API"
   },
-  "host": "api-album-review.herokuapp.com",
+  "host": "localhost:5000",
   "basePath": "/",
   "tags": [
     {
@@ -30,7 +30,7 @@
     }
   ],
   "schemes": [
-    "https"
+    "http"
   ],
   "securityDefinitions": {
     "JWT": {

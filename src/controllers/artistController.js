@@ -32,9 +32,6 @@ exports.getArtistById = async (req, res) => {
 exports.add = async (req, res) => {
   //#swagger.tags = ['Artists']
   try {
-    let artist = await Artist.findOne({ name: req.body.name });
-    if (!artist) return res.status(400).send('Artist already exist');
-
     const createArtist = await ArtistService.addArtist(req.body, req.user._id);
 
     res.status(201).json(createArtist);
