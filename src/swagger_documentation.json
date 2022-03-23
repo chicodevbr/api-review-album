@@ -391,6 +391,31 @@
             "description": "Internal Server Error"
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Artists"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "artistId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/api/v1/signup": {
