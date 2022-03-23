@@ -9,6 +9,6 @@ routes.get('/', (req, res) => {
   // #swagger.ignore = true
   res.redirect('/api/v1/docs');
 });
-routes.use('/api/v1', [indexRoute, albumRoutes, artistRoutes, userRoutes]);
+routes.use('/api/v1', [indexRoute, userRoutes, albumRoutes, artistRoutes]);
 
 module.exports = routes;

@@ -19,18 +19,19 @@ const doc = {
   },
   tags: [
     {
-      name: 'Albums',
-      description:
-        'Endpoints com infos sobre os albums da nossa base de dados.',
+      name: 'Users',
+      description: 'Endpoints para cadastro e login de usuários.',
     },
+
     {
       name: 'Artists',
       description:
         'Endpoints que retornam infos de artistas cadastrados na base de dados.',
     },
     {
-      name: 'Users',
-      description: 'Endpoints para cadastro e login de usuários.',
+      name: 'Albums',
+      description:
+        'Endpoints com infos sobre os albums da nossa base de dados.',
     },
     {
       name: 'Reviews',
