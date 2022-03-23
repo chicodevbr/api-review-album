@@ -51,9 +51,9 @@ exports.update = async (req, res) => {
 
     const { name, description, country } = req.body;
     const updatedArtist = await Artist.findByIdAndUpdate(req.params.artistId, {
-      name,
-      description,
-      country,
+      name: name,
+      description: description,
+      country: country,
     });
     res.status(201).send(updatedArtist);
   } catch (error) {
