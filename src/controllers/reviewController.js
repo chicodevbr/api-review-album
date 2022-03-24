@@ -3,6 +3,18 @@ const User = require('../models/user');
 const Album = require('../models/album');
 const mongoose = require('mongoose');
 
+exports.getByReviewId = async (req, res) => {
+  // #swagger.tags = ['Reviews']
+  try {
+    const review = await Review.findById(req.params.reviewId);
+    if (!review) return res.status(404).send('Review not found');
+
+    res.status(200).json(review);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.post = async (req, res) => {
   // #swagger.tags = ['Reviews']
 
