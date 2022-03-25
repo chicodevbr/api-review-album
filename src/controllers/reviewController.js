@@ -11,13 +11,25 @@ exports.getByReviewId = async (req, res) => {
 
     res.status(200).json(review);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error });
+  }
+};
+
+exports.getByAlbumId = async (req, res) => {
+  // #swagger.tags = ['Reviews']
+  try {
+    const review = await Review.find({ albumId: req.params.albumId });
+
+    if (!review) return res.status(404).send('Review not found');
+
+    res.status(200).json(review);
+  } catch (error) {
+    res.status(500).json({ error: error });
   }
 };
 
 exports.post = async (req, res) => {
   // #swagger.tags = ['Reviews']
-
   try {
     const user = await User.findById(req.user._id);
     if (!user) return res.status(404).send('User not found');
@@ -31,6 +43,7 @@ exports.post = async (req, res) => {
       title: title,
       post: post,
       userId: req.user._id,
+      albumId: req.params.albumId,
     });
 
     const session = await mongoose.startSession();
@@ -43,5 +56,6 @@ exports.post = async (req, res) => {
     res.status(201).json({ review: newReview });
   } catch (error) {
     res.status(500).json({ error: error });
+    console.log(error);
   }
 };
