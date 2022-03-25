@@ -3,6 +3,17 @@ const User = require('../models/user');
 const Album = require('../models/album');
 const mongoose = require('mongoose');
 
+exports.getReviews = async (req, res) => {
+  // #swagger.tags = ['Reviews']
+  try {
+    const reviews = await Review.find();
+    if (!reviews) return res.status(404).json('There no reviews published yet');
+    res.status(201).send(reviews);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 exports.getByReviewId = async (req, res) => {
   // #swagger.tags = ['Reviews']
   try {
