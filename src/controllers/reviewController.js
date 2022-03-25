@@ -8,7 +8,7 @@ exports.getReviews = async (req, res) => {
   try {
     const reviews = await Review.find();
     if (!reviews) return res.status(404).json('There no reviews published yet');
-    res.status(201).send(reviews);
+    res.status(200).send(reviews);
   } catch (error) {
     res.status(500).json({ error: error });
   }
