@@ -39,6 +39,19 @@ exports.getByAlbumId = async (req, res) => {
   }
 };
 
+exports.getByUserId = async (req, res) => {
+  // #swagger.tags = ['Reviews']
+  try {
+    const review = await Review.find({ userId: req.params.userId });
+
+    if (!review) return res.status(404).send('Review not found');
+
+    res.status(200).json(review);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 exports.post = async (req, res) => {
   // #swagger.tags = ['Reviews']
   try {
