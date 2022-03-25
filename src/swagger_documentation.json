@@ -590,6 +590,26 @@
         }
       }
     },
+    "/api/v1/reviews": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/api/v1/review/{reviewId}": {
       "get": {
         "tags": [
@@ -617,7 +637,7 @@
         }
       }
     },
-    "/api/v1/review/{id}": {
+    "/api/v1/review/album/{albumId}": {
       "get": {
         "tags": [
           "Reviews"
@@ -625,7 +645,34 @@
         "description": "",
         "parameters": [
           {
-            "name": "id",
+            "name": "albumId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/review/user/{userId}": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "userId",
             "in": "path",
             "required": true,
             "type": "string"
