@@ -6,11 +6,6 @@ const reviewSchema = new Schema({
     type: String,
     required: true,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
   title: {
     type: String,
     required: true,
@@ -19,8 +14,22 @@ const reviewSchema = new Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    default: new Date(),
+  },
   likes: {
     type: Number,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  albumId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Album',
+    required: true,
   },
 });
 
