@@ -103,3 +103,20 @@ exports.update = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
+
+exports.updateLikes = async (req, res) => {
+  // #swagger.tags = ["Reviews"]
+
+  try {
+    const { reviewId } = req.params;
+    const updateLike = await Review.findOneAndUpdate(
+      { _id: reviewId },
+      { $inc: { likes: 1 } }
+    );
+
+    res.status(200).json(updateLike);
+  } catch (error) {
+    res.status(500).json({ error: error });
+    console.log(error.message);
+  }
+};
