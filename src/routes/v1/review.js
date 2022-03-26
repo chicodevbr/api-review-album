@@ -10,5 +10,6 @@ router.get('/review/user/:userId', reviewController.getByUserId);
 router.post('/review/:albumId', auth, reviewController.post);
 router.patch('/review/:reviewId', auth, reviewController.updateLikes);
 router.put('/review/:reviewId', auth, reviewController.update);
+router.delete('/review/:reviewId', auth, reviewController.delete);
 
 module.exports = router;
