@@ -60,12 +60,13 @@ exports.post = async (req, res) => {
 
     const album = await Album.findById(req.params.albumId);
 
-    const { author, title, post } = req.body;
+    const { author, title, post, ratings } = req.body;
 
     const newReview = new Review({
       author: author,
       title: title,
       post: post,
+      ratings: ratings,
       userId: req.user._id,
       albumId: req.params.albumId,
     });
@@ -90,11 +91,12 @@ exports.update = async (req, res) => {
     const review = await Review.findById(req.params.reviewId);
     if (!review) return res.status(404).send('Review not found.');
 
-    const { title, post } = req.body;
+    const { title, post, ratings } = req.body;
 
     const updateReview = await Review.findByIdAndUpdate(req.params.reviewId, {
       title: title,
       post: post,
+      ratings: ratings,
       update: new Date(),
       updated: true,
     });
