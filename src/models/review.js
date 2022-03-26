@@ -18,6 +18,13 @@ const reviewSchema = new Schema({
     type: Date,
     default: new Date(),
   },
+  update: {
+    type: Date,
+  },
+  updated: {
+    type: Boolean,
+    default: false,
+  },
   likes: {
     type: Number,
   },
