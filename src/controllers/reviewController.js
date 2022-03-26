@@ -80,6 +80,26 @@ exports.post = async (req, res) => {
     res.status(201).json({ review: newReview });
   } catch (error) {
     res.status(500).json({ error: error });
-    console.log(error);
+  }
+};
+
+exports.update = async (req, res) => {
+  // #swagger.tags = ['Reviews']
+
+  try {
+    const review = await Review.findById(req.params.reviewId);
+    if (!review) return res.status(404).send('Review not found.');
+
+    const { title, post } = req.body;
+
+    const updateReview = await Review.findByIdAndUpdate(req.params.reviewId, {
+      title: title,
+      post: post,
+      update: new Date(),
+      updated: true,
+    });
+    res.status(200).json(updateReview);
+  } catch (error) {
+    res.status(500).json({ error: error });
   }
 };
