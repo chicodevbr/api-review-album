@@ -122,3 +122,21 @@ exports.updateLikes = async (req, res) => {
     console.log(error.message);
   }
 };
+
+exports.delete = async (req, res) => {
+  // #swagger.tags = ["Reviews"]
+
+  try {
+    const review = await Review.findById(req.params.reviewId);
+    if (!review) return res.status(404).send('Review not found');
+
+    if (review.userId.toString() !== req.user._id.toString()) {
+      return res.status(401).send('Not authorized.');
+    }
+
+    const deleteReview = await Review.findByIdAndDelete(req.params.reviewId);
+    res.status(204).send(deleteReview);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
