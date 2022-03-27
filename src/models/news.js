@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const newsSchema = new Schema({
   author: {
     type: String,
-    required,
+    required: true,
   },
   title: {
     type: String,
