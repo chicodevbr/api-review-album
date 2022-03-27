@@ -46,3 +46,22 @@ exports.post = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.update = async (req, res) => {
+  // #swagger.tags = ['News']
+  try {
+    const newsExists = await News.findById(req.params.newsId);
+    if (!newsExists) return res.status(404).send('News not found.');
+
+    const { title, news } = req.body;
+    const updateNews = await News.findByIdAndUpdate(req.params.newsId, {
+      title: title,
+      news: news,
+      update: new Date(),
+      updated: true,
+    });
+    res.status(200).json(updateNews);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
