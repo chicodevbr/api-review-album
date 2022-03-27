@@ -6,8 +6,8 @@ const auth = require('../../middleware/auth');
 router.get('/news', newsController.getNews);
 router.get('/news/:newsId', newsController.getNewsById);
 router.post('/news', auth, newsController.post);
-router.put('/news/newsId', auth, newsController.update);
-router.patch('/news/newsId', auth, newsController.updateLikes);
-router.delete('/news/newsId', auth, newsController.delete);
+router.put('/news/:newsId', auth, newsController.update);
+router.patch('/news/:newsId', auth, newsController.updateLikes);
+router.delete('/news/:newsId', auth, newsController.delete);
 
 module.exports = router;
