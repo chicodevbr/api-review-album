@@ -973,15 +973,19 @@
             "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/api/v1/news/newsId": {
+      },
       "put": {
         "tags": [
           "News"
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "newsId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "x-auth-token",
             "in": "header",
@@ -1028,6 +1032,12 @@
         "description": "",
         "parameters": [
           {
+            "name": "newsId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
             "name": "x-auth-token",
             "in": "header",
             "type": "string"
@@ -1054,6 +1064,12 @@
         ],
         "description": "",
         "parameters": [
+          {
+            "name": "newsId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "x-auth-token",
             "in": "header",
