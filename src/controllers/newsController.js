@@ -67,7 +67,7 @@ exports.update = async (req, res) => {
 };
 
 exports.updateLikes = async (req, res) => {
-  // #swagger.tags["News"]
+  // #swagger.tags = ["News"]
   try {
     const { newsId } = req.params;
     const updateLike = await News.findOneAndUpdate(
@@ -82,7 +82,7 @@ exports.updateLikes = async (req, res) => {
 };
 
 exports.delete = async (req, res) => {
-  // #swagger.tags["News"]
+  // #swagger.tags = ["News"]
   try {
     const news = await News.findById(req.params.newsId);
     if (!news) return res.status(404).send('News not found');
