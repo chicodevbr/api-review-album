@@ -80,3 +80,21 @@ exports.updateLikes = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.delete = async (req, res) => {
+  // #swagger.tags["News"]
+  try {
+    const news = await News.findById(req.params.newsId);
+    if (!news) return res.status(404).send('News not found');
+
+    if (news.userId.toString() !== req.user._id.toString()) {
+      return res.status(401).send('Not authorized.');
+    }
+
+    const deleteNews = await News.findByIdAndDelete(req.params.newsId);
+
+    res.status(204).send(deleteNews);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
