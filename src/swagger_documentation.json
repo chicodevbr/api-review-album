@@ -34,7 +34,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "http/https"
   ],
   "securityDefinitions": {
     "JWT": {
