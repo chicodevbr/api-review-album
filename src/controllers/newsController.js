@@ -65,3 +65,18 @@ exports.update = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+exports.updateLikes = async (req, res) => {
+  // #swagger.tags["News"]
+  try {
+    const { newsId } = req.params;
+    const updateLike = await News.findOneAndUpdate(
+      { _id: newsId },
+      { $inc: { likes: 1 } }
+    );
+
+    res.status(204).json(updateLike);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
