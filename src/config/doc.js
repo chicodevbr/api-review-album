@@ -38,6 +38,10 @@ const doc = {
       description: 'Endpoints para postagem de reviews.',
     },
     {
+      name: 'News',
+      description: 'Endpoints de notícias sobre música.',
+    },
+    {
       name: 'Index',
       description: 'Endpoint de boas-vindas.',
     },
