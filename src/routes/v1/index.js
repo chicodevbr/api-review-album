@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   #swagger.description = 'Endpoint index da API."
   */
   console.log('API Album Review version 1.1.1');
-  res.send('Hello API ALBUM REVIEW version 1.1.1');
+  res.status(200).send('Hello, Welcome to API ALBUM REVIEW.');
 });
 
 module.exports = router;

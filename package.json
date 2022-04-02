@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest tests/app.test.js",
     "start": "nodemon index.js",
     "doc": "node ./src/swagger.js"
   },
@@ -32,5 +32,9 @@
     "nodemon": "^2.0.15",
     "swagger-autogen": "^2.20.2",
     "swagger-ui-express": "^4.3.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2"
   }
 }
