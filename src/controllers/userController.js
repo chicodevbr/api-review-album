@@ -9,9 +9,21 @@ exports.signup = async (req, res) => {
   const { name, email, password } = req.body;
   const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty() && errors.errors[0].param === 'name') {
     return res.status(422).send({
       message: 'Please, fill out all fields.',
+    });
+  }
+
+  if (!errors.isEmpty() && errors.errors[0].param === 'email') {
+    return res.status(400).send({
+      message: 'Invalid email address. Please try again.',
+    });
+  }
+
+  if (!errors.isEmpty() && errors.errors[0].param === 'password') {
+    return res.status(400).send({
+      message: 'Password must be longer than 6 characters',
     });
   }
 
@@ -56,7 +68,7 @@ exports.login = async (req, res) => {
 
   if (!errors.isEmpty()) {
     return res.status(422).send({
-      message: 'Please, fill out all fields.',
+      message: 'Please, fill out all fields. Try again.',
     });
   }
 
