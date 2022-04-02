@@ -1,0 +1,26 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: actions/checkout
+        uses: actions/checkout@v3.0.0
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.0.0
+        with:
+          node-version: 14.x
+
+      - name: Installer dependencies
+        run: yarn Installer
+
+      - name: Run Tests
+        run: yarn test
