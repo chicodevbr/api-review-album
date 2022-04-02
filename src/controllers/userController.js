@@ -2,10 +2,18 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const environment = require('../config/environment');
+const { validationResult } = require('express-validator');
 
 exports.signup = async (req, res) => {
   //#swagger.tags = ['Users']
   const { name, email, password } = req.body;
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(422).send({
+      message: 'Please, fill out all fields.',
+    });
+  }
 
   try {
     let user = await User.findOne({ email: email });
@@ -45,6 +53,12 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   //#swagger.tags = ['Users']
   const { email, password } = req.body;
+
+  if (!errors.isEmpty()) {
+    return res.status(422).send({
+      message: 'Please, fill out all fields.',
+    });
+  }
 
   try {
     let user = await User.findOne({ email: email });
