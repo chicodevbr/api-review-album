@@ -20,7 +20,7 @@ jobs:
           node-version: 14.x
 
       - name: Installer dependencies
-        run: yarn Installer
+        run: yarn install
 
       - name: Run Tests
         run: yarn test
