@@ -6,7 +6,7 @@ describe('GET /api/v1/', () => {
   it('should return a response', async () => {
     const response = await request.get('/api/v1/');
     expect(response.status).toBe(200);
-    expect(response.text).toBe('Hello, Welcome to API ALBUM RE.');
+    expect(response.text).toBe('Hello, Welcome to API ALBUM .');
   });
 });
 
