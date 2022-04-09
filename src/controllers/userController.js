@@ -65,6 +65,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
   //#swagger.tags = ['Users']
   const { email, password } = req.body;
+  const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     return res.status(422).send({
@@ -87,7 +88,7 @@ exports.login = async (req, res) => {
       secretKey
     );
 
-    res.status(200).send(token);
+    res.status(200).json(token);
   } catch (error) {
     res.status(500).json({ error: error });
   }
