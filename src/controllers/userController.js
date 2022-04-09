@@ -67,7 +67,7 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
   const errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
+  if (!errors.isEmpty() && errors.errors[0].param === 'email') {
     return res.status(422).send({
       message: 'Please, fill out all fields. Try again.',
     });
