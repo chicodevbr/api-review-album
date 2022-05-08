@@ -657,22 +657,11 @@
             "in": "path",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "x-auth-token",
-            "in": "header",
-            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -689,11 +678,6 @@
             "name": "reviewId",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "x-auth-token",
-            "in": "header",
             "type": "string"
           },
           {
@@ -718,12 +702,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -838,11 +816,6 @@
             "type": "string"
           },
           {
-            "name": "x-auth-token",
-            "in": "header",
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -867,12 +840,6 @@
         "responses": {
           "201": {
             "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
